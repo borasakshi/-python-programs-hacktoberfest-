@@ -1,0 +1,45 @@
+from math import ceil
+stack=[]
+inp=list(input())
+ind_dict={}
+#inp=input().split(",")
+for ind_ , para in enumerate(inp):
+    ind=ind_+1
+
+    ind_dict[ind]=para
+    if len(stack)==0:
+        stack.append(para)
+    elif stack[-1]=='(' and para==')':
+        stack.pop()
+        ind_dict.pop(ind)
+        for k,v in ind_dict.items():
+            if v=='(':
+                index=k
+        ind_dict.pop(index)
+    elif stack[-1]=='{' and para=='}':
+        stack.pop()
+        ind_dict.pop(ind)
+        for k,v in ind_dict.items():
+            if v=='{':
+                index=k
+        ind_dict.pop(index)
+
+    elif stack[-1]=='[' and para==']':
+        stack.pop()
+        ind_dict.pop(ind)
+        for k,v in ind_dict.items():
+            if v=='[':
+                index=k
+        ind_dict.pop(index)
+
+    else:
+        stack.append(para)
+if len(ind_dict)==0:
+    print(0)
+else:
+    if len(ind_dict)!=1:
+        print(list(ind_dict.keys())[ceil(len(ind_dict)//2)])
+    else:
+       print(list(ind_dict.keys())[0])
+
+
