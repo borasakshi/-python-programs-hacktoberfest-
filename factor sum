@@ -1,0 +1,21 @@
+def fac_sum(n):
+    if n==0:
+        return 0
+    s=1
+    for i in range(2,n+1):
+        if n%i==0:
+            s+=i
+    return s
+num=list(map(int,input().split(",")))
+res=list()
+#resnum=list(map(fac_sum,num))
+# for n in resnum:
+#     if n in num:
+#         res.append(n)
+for n in num:
+    if fac_sum(n) in num:
+        res.append(n)
+if len(res)!=0:
+    print(sorted((res)))
+else:
+    print("-1")
